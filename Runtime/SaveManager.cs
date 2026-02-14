@@ -14,8 +14,9 @@ namespace Tesseract.Save
     ///   await manager.SaveAsync(myData);
     ///   var loaded = await manager.LoadAsync();
     /// </summary>
-    public class SaveManager<T> where T : class, new()
+    public class SaveManager<T> : IDisposable where T : class, new()
     {
+        private bool _disposed;
         private readonly string _savePath;
         private readonly string _backupPath;
         private readonly string _backupDir;
@@ -330,5 +331,14 @@ namespace Tesseract.Save
         }
 
         #endregion
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _saveLock?.Dispose();
+                _disposed = true;
+            }
+        }
     }
 }

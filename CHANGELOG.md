@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2026-02-14
+### Fixed
+- SaveManager: SemaphoreSlim 리소스 누수 방지 (IDisposable 구현)
+
 ## [1.0.0] - 2026-02-14
 ### Added
 - SaveManager<T>: Generic async save manager with thread-safe operations
